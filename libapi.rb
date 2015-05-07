@@ -20,10 +20,19 @@ class ApiPathwarNet
     response
   end
 
+  # @param coupons [Array] array of Strings
+  def send_coupons coupons
+    coupons.each{|c| send_coupon c}
+  end
+
+  # @param coupon [String]
   def send_coupon coupon
     send URL_COUPON, {'coupon' => coupon, 'organization' => @organisation}
   end
 
+  # @param user [String] your username creditential
+  # @param pass [String] your password creditential
+  # @param organization [String] your organization id
   def initialize user, pass, organisation
     @url = URL_BASE
     @user = user
