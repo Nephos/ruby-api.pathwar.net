@@ -9,7 +9,10 @@ class ApiPathwarNet
   URL_BASE = URI('https://api.pathwar.net/')
   URL_COUPON = URL_BASE + 'organization-coupons'
 
+  # @param url [String] the resource url to load
+  # @param url [URI::HTTPS] the resource url to load
   def send url, data
+    url = URL_BASE + url if url.is_a? String
     request = Net::HTTP::Post.new(url)
     request.add_field('Content-Type', 'application/json')
     request.basic_auth @user, @pass
